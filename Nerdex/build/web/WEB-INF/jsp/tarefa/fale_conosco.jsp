@@ -9,13 +9,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Meu perfil - NERDEX</title>
     </head>
     <body>
-        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
-    </body>
+        
+   
     <!-- NAVBAR -->
     <div class="container">
         <div class="row">
@@ -154,9 +155,9 @@
         </div>
 
     </div>
-</div>        
-
+</div>      
 <!-- Aqui vão configuração de js e css -->
 <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>  
+</body>
 </html>

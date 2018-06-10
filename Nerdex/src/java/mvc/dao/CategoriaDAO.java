@@ -58,7 +58,7 @@ public class CategoriaDAO {
             while(rs.next()) {
                 Categoria cat = new Categoria();
                 cat.setCatid(rs.getLong("catid"));
-                cat.setCatdes(rs.getString("catdescricao"));
+                cat.setCatdes(rs.getString("catdes"));
                 listaCategorias.add(cat);
             }
         } catch (SQLException ex) {

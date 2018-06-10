@@ -5,6 +5,8 @@
  */
 package mvc.controller;
 
+import java.io.File;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import mvc.bean.Cliente;
 import mvc.bean.Mensagem;
@@ -15,6 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
+import org.springframework.web.servlet.HttpServletBean;
 
 /**
  *
@@ -137,6 +144,53 @@ public class ControllerGeral {
         return "tarefa/fale_conosco";
     }
     
+    
+    @RequestMapping("/trabalhe_conosco")
+    public String trabalheConosco(){        
+        return "tarefa/trabalhe_conosco";
+    }
+    
+    
+   @RequestMapping(value="/adicionaCurriculo")
+    public String adiciona(HttpServletRequest request, Model model){
+        /*
+        Configuracoes necessárias
+        Fonte: http://www.pablocantero.com/blog/2010/09/29/upload-com-spring-mvc/
+        */
+        try {
+             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartFile multipartFile = multipartRequest.getFile("tfCur");
+            
+            
+            String destinyPath = "C:\\Fotos\\";
+            if(!(new File(destinyPath)).exists()){
+                (new File(destinyPath)).mkdir();
+            }
+            
+            String photoName = multipartFile.getOriginalFilename();
+            String photoPath = destinyPath + photoName;
+                       
+            File photoFile = new File(photoPath);
+            multipartFile.transferTo(photoFile);
+            
+            //backup
+            //File destinationDir = new File(applicationPath);
+            //FileUtils.copyFileToDirectory(photoFile, destinationDir);
+            
+//            Usuario user = new Usuario();
+//            user.setLogin(request.getParameter("login"));
+//            user.setSenha(request.getParameter("senha"));
+//            user.setPhoto(photoPath);           
+//            
+//            dao.adicionaUsuario(user);            
+            return "tarefa/trabalhe_conosco";
+            
+        } catch (IOException ex) {
+//            model.addAttribute("erro", ex.toString());
+//            return "usuario/usuario-erro-adicao";
+        } 
+        return "tarefa/trabalhe_conosco";
+    }
 //    
 //    @RequestMapping("/listaTarefa")
 //    public String lista(Model model){

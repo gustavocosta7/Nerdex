@@ -1,6 +1,6 @@
 <%-- 
-    Document   : usuario_perfil
-    Created on : 27/05/2018, 16:51:37
+    Document   : trabalhe_conosco
+    Created on : 10/06/2018, 15:14:49
     Author     : gustav0
 --%>
 
@@ -11,11 +11,11 @@
     <head>
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Meu perfil - NERDEX</title>
-    </head>
-    <body>
         
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Trabalhe Conosco - NERDEX</title>
+    </head>
+    <body>  
    
     <!-- NAVBAR -->
     <div class="container">
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2  class="text-center">Mande sua mensagem</h2>
+                    <h2  class="text-center">Trabalhe Conosco</h2>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 ">
-                    <form action="<c:url value='/adicionaMensagem'/>" method="post">
+                    <form action="<c:url value='/adicionaCurriculo'/>" enctype="multipart/form-data" method="post">
                                                 
                         
                         <div class="form-group">
@@ -99,12 +99,12 @@
                             <label>Nome</label>
                             <input class="form-control" type="text" name="tfNome">
                         </div>
-                         <div class="form-group">
-                            <label>Sua mensagem</label>
-                            <textarea class="form-control" name="tfMensagem"></textarea>
+                        <div class="form-group">
+                            <label>Seu currículo</label>
+                            <input class="form-control" type="file" name="tfCur">
                         </div>
-                         
-                        <input type="submit" class=" btn  btn-outline-primary" name="btnAlterar" value="Enviar mensagem">
+                        
+                        <input type="submit" class=" btn  btn-outline-primary" name="btnEnviar" value="Enviar">
                     </form> 
                    
                 </div>
@@ -155,9 +155,11 @@
         </div>
 
     </div>
-</div>      
-<!-- Aqui vão configuração de js e css -->
+</div>   
+                        <!-- Aqui vão configuração de js e css -->
 <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>  
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
+
+
 </html>
