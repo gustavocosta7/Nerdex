@@ -5,15 +5,24 @@
  */
 package mvc.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
 import mvc.bean.Mensagem;
+import mvc.bean.ProdutoCategoria;
 import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
 import mvc.dao.CurriculoDao;
+import mvc.dao.ProdutoDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,21 +40,58 @@ public class ControllerGeral {
 
     private final ClienteDAO dao;
     private final CategoriaDAO catdao;
+    private final ProdutoDAO prodao;
     private final CurriculoDao curdao;
     
     
     @Autowired
-    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao){
+    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao){
         this.dao = dao;
         this.catdao = catdao;
         this.curdao = curdao;
+        this.prodao = prodao;
     }
     
     @RequestMapping("/")
     public String index(Model model){
+        List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
+        for(int j = 0; j < pc.size(); j++){
+            System.out.println(" ---- "+pc.get(j).getProcam());
+            System.out.println(" ---- "+pc.get(j).getProcatdescricao());
+            System.out.println(" ---- "+pc.get(j).getPronome());
+            System.out.println(" ---- "+pc.get(j).getPropreco());
+        }
+        
+        
+        try {
+            setImagePath(pc);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        model.addAttribute("produtos",pc);
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "index";
     }
+    
+    private void setImagePath(List<ProdutoCategoria> listaProdutos) throws IOException{
+        
+        for (ProdutoCategoria pc : listaProdutos) {
+            
+            BufferedImage bImage = ImageIO.read(new File(pc.getProcam()));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( bImage, "png", baos );
+            baos.flush();
+            byte[] imageInByteArray = baos.toByteArray();
+            baos.close();                                   
+            String b64 = DatatypeConverter.printBase64Binary(imageInByteArray);
+            pc.setProcam(b64);
+            
+        }
+            
+    }
+    
+    
     @RequestMapping("/index")
     public String retornaIndex(){
         return "/index";

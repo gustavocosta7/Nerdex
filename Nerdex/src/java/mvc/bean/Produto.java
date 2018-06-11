@@ -17,7 +17,7 @@ public class Produto {
     private double propreco;
     private String prodes;
     private String procam;
-
+        
     public Produto(long procatid, String pronome, double propreco, String prodes, String procam) {
         this.procatid = procatid;
         this.pronome = pronome;
