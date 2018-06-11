@@ -22,7 +22,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <h3>Cadastrar Produto</h3>
-                    <form method="post"  action="${pageContext.request.contextPath}/adicionarProduto">
+                    <form method="post"  enctype="multipart/form-data" action="${pageContext.request.contextPath}/adicionarProduto">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome</label>
                             <input name="tfNome" type="text" class="form-control" placeholder="Nome do produto">
@@ -33,10 +33,12 @@
                                     <option value="${categoria.catid}">${categoria.catdes}</option>
                                 </c:forEach> 
                             </select>
-                            <label for="exampleInputEmail1">Preco</label>
+                            <label>Preco</label>
                             <input name="tfPreco" type="text" class="form-control" placeholder="Preco do produto">
                             <span for="idDesc">Descrição</span>
                             <textarea name="tfDesc"  id="idDesc" class="form-control" required></textarea>
+                            <label>Foto do produto</label>
+                            <input name="tfFoto" type="file" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Confirmar</button>
                         <a href="${pageContext.request.contextPath}/crudProduto"> Voltar </a>

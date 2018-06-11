@@ -13,7 +13,7 @@
     </head>
 
     <body>
-
+        <a href="index.jsp"></a>
       <!-- NAVBAR -->
       <div class="container">
         <div class="row">
@@ -60,8 +60,7 @@
 
 
                         <c:if test="${clienteNome == null}">
-                          <button type="button" class="btn btn-sm  btn-primary" data-toggle="modal" data-target="#modaluser" target="_blank" >Login<img src="<c:url value='/resources/img/user.png'></c:url>" />
-                        </button>
+                          <a  class=" btn btn-primary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Login</a>
                       </c:if>
                       <c:if test="${clienteNome != null}">
                         <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Ola, ${clienteNome}</a>
@@ -80,48 +79,6 @@
           </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="modaluser" tabindex="-1" role="dialog" aria-labelledby="modal-user" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-
-            <form method="post" action="${pageContext.request.contextPath}/valida-login">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label >E-mail</label>
-                    <input type="email" class="form-control" name="tfEmail" required/>
-                  </div>
-                  <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" class="form-control" name="tfSenha" required>
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label">
-                          Lembre-me
-                        </label>
-                      </div>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item"  href="${pageContext.request.contextPath}/cadastro-usuario">Novo por aqui? Registre-se</a>
-                      <a class="dropdown-item" href="#">Esqueceu a senha?</a>
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                      <input type="submit" class="btn btn-primary" value="Logar">
-                      </div>
-                    </form>
-                  </div>
-
-                </div>
-              </div>
 
               <!-- Aqui vão configuração de js e css -->
               <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>

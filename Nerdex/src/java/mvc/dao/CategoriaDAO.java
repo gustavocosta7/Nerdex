@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
-import mvc.bean.Administrador;
 import mvc.bean.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,7 +34,7 @@ public class CategoriaDAO {
     }
     
     public boolean adicionaCategoria(Categoria cat) {
-        String sql = "insert into categoria(catdescricao) values(?)";
+        String sql = "insert into categoria(catdes) values(?)";
 
         PreparedStatement ps;
         try {
@@ -90,7 +89,7 @@ public class CategoriaDAO {
             
             if(rs.next()){
                 cat.setCatid(rs.getLong("catid"));
-                cat.setCatdes(rs.getString("catdescricao"));
+                cat.setCatdes(rs.getString("catdes"));
             }
             return cat;
         } catch (Exception e) {
@@ -99,7 +98,7 @@ public class CategoriaDAO {
     }
     
     public boolean alterarCategoria(Categoria cat){
-        String sql = "update categoria set catdescricao = ? where catid = ?";
+        String sql = "update categoria set catdes = ? where catid = ?";
         
         try {
             PreparedStatement ps = connection.prepareStatement(sql);

@@ -9,19 +9,18 @@ import java.io.File;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import mvc.bean.Cliente;
+import mvc.bean.Curriculo;
 import mvc.bean.Mensagem;
 import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
+import mvc.dao.CurriculoDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
-import org.springframework.web.servlet.HttpServletBean;
 
 /**
  *
@@ -32,12 +31,14 @@ public class ControllerGeral {
 
     private final ClienteDAO dao;
     private final CategoriaDAO catdao;
+    private final CurriculoDao curdao;
     
     
     @Autowired
-    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao){
+    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao){
         this.dao = dao;
         this.catdao = catdao;
+        this.curdao = curdao;
     }
     
     @RequestMapping("/")
@@ -48,6 +49,11 @@ public class ControllerGeral {
     @RequestMapping("/index")
     public String retornaIndex(){
         return "/index";
+    }
+    
+    @RequestMapping("/login")
+    public String login(){
+        return "tarefa/login";
     }
     
     @RequestMapping("/cadastro-usuario")
@@ -162,7 +168,7 @@ public class ControllerGeral {
             MultipartFile multipartFile = multipartRequest.getFile("tfCur");
             
             
-            String destinyPath = "C:\\Fotos\\";
+            String destinyPath = "C:\\Curriculo\\";
             if(!(new File(destinyPath)).exists()){
                 (new File(destinyPath)).mkdir();
             }
@@ -176,13 +182,10 @@ public class ControllerGeral {
             //backup
             //File destinationDir = new File(applicationPath);
             //FileUtils.copyFileToDirectory(photoFile, destinationDir);
-            
-//            Usuario user = new Usuario();
-//            user.setLogin(request.getParameter("login"));
-//            user.setSenha(request.getParameter("senha"));
-//            user.setPhoto(photoPath);           
-//            
-//            dao.adicionaUsuario(user);            
+            Curriculo cd = new Curriculo(request.getParameter("tfNome"),request.getParameter("tfEmail"),
+            photoName);
+
+            curdao.adicionaCurriculo(cd);
             return "tarefa/trabalhe_conosco";
             
         } catch (IOException ex) {
