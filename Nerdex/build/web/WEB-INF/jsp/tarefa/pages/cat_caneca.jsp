@@ -1,9 +1,15 @@
+<%-- 
+    Document   : cat_livro
+    Created on : 12/06/2018, 05:36:33
+    Author     : gustav0
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
+
+        <html>
     <head>
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
@@ -11,7 +17,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-reboot.css"/>"/>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>NERDEX - SUA LOJA NERD</title>
+        <title>NERDEX - CANECAS</title>
     </head>
 
     <body>
@@ -41,7 +47,7 @@
                                                 </a>
                                                 <div id="categorias" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     <c:forEach items="${listaCategorias}" var="categoria">
-                                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/mostrarCategoria?id=${categoria.catid}">${categoria.catdes}</a>
+                                                        <a class="dropdown-item" href="href="mostrarCategoria?id=${categoria.catid}"">${categoria.catdes}</a>
                                                         <div class="dropdown-divider"></div>
                                                     </c:forEach>
                                                 </div>
@@ -138,5 +144,8 @@
         <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
         <script src="<c:url value="/resources/js/funcaoCarrinho.js"/>"</script>
+    </body>
+</html>
+
     </body>
 </html>

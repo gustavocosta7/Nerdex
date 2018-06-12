@@ -130,6 +130,26 @@ public class ControllerGeral {
         return "tarefa/form_usuario_cadastro";
         
     }
+
+    @RequestMapping("/mostrarCategoria")
+    public String mostrarCategoria(int id,Model model){
+            
+            model.addAttribute("listaCategorias",catdao.listarCategorias());
+            model.addAttribute("produtos",prodao.listarProdutosComFotoSelecionado(id));
+       
+        String caminho ="";
+        switch(id){
+            case 1:
+                caminho = "tarefa/pages/cat_livro";
+            case 2:
+                caminho = "tarefa/pages/cat_camisa";
+            case 3:
+                caminho = "tarefa/pages/cat_caneca";
+            case 4: 
+                caminho = "tarefa/pages/cat_pelucia";
+        }
+        return "caminho";
+    }
     
     @RequestMapping("/valida-login") 
 
@@ -138,10 +158,8 @@ public class ControllerGeral {
        Cliente cliente = new Cliente();
        cliente.setCliemail(request.getParameter("tfEmail")); 
        cliente.setClisenha(request.getParameter("tfSenha")); 
-       boolean cadastrado = dao.validaCliente(cliente);
-        System.out.println(cadastrado + " ------------");
        
-       if(cadastrado){
+       if( dao.validaCliente(cliente)){
             Cliente c1 =  dao.getCliente(cliente);
             try{
                 httpSession.setAttribute("cliente",c1);

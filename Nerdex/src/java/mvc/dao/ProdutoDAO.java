@@ -101,6 +101,30 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public List<ProdutoCategoria> listarProdutosComFotoSelecionado(int id) {
+        List<ProdutoCategoria> produtos = new ArrayList<>();
+        String sql = "select proid, procatid,pronome, catdes, propreco, prodescricao,procam from produto inner join categoria on catid = procatid"
+                + " where procatid = id";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                ProdutoCategoria prod = new ProdutoCategoria(rs.getLong("proid"),rs.getLong("procatid"),
+                       rs.getString("pronome"),rs.getString("catdes"),rs.getDouble("propreco"),
+                        rs.getString("prodescricao"),rs.getString("procam"));
+
+                produtos.add(prod);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return produtos;
+    }
 //    ---------LISTA SO UM
     
     public ProdutoCategoria getProduto(Long id) {

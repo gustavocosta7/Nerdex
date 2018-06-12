@@ -41,7 +41,7 @@
                                                 </a>
                                                 <div id="categorias" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     <c:forEach items="${listaCategorias}" var="categoria">
-                                                        <a class="dropdown-item" href="href="mostrarCategoria?id=${categoria.catid}"">${categoria.catdes}</a>
+                                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/mostrarCategoria?id=${categoria.catid}">${categoria.catdes}</a>
                                                         <div class="dropdown-divider"></div>
                                                     </c:forEach>
                                                 </div>
@@ -63,7 +63,7 @@
                                         </c:if>
                                         <c:if test="${cliente.clinome != null}">
                                             <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Logout</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/">Logout</a>
                                         </c:if>
 
                                         <button type="button" class="btn btn-sm btn-info">
