@@ -11,11 +11,15 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/exibe_produto.jsp</file>
             <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/listar_produto.jsp</file>
             <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/src/java/mvc/controller/ProdutoController.java</file>
             <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/produto_principal.jsp</file>
         </group>
+=======
+        <group/>
+>>>>>>> 5b5f3bc65180b457ebad8fe78d1c34ee9baa73c0
     </open-files>
 </project-private>

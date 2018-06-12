@@ -70,6 +70,7 @@ public class ClienteDAO {
 
     }
 
+    
     public boolean validaCliente(Cliente cliente) {
         String sql = "select *from cliente where cliemail = ? and clisenha = ?";
         try {

@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 ">
-                    <form action="<c:url value='/alteraCliente'/>" method="post">
+                    <form action="<c:url value='/alterarProduto'/>" method="post" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -37,7 +37,7 @@
                             <input class="form-control" type="text" name="tfNome" value="${produto.pronome}">
                         </div>
                         <label>Categoria</label>
-                         <select name="tfCat" class="custom-select" id="idSelect" required>
+                         <select name="tfCategoria" class="custom-select" id="idSelect" required>
                                     <c:forEach items="${listaCategorias}" var="categoria">
                                         <c:if test="${produto.procatid == categoria.catid}">
                                              <option value="${categoria.catid}" selected>${categoria.catdes} </option>
@@ -59,7 +59,7 @@
                             <textarea name="tfDesc"  id="idDesc" class="form-control" required>${produto.prodes}</textarea>
                         </div>
                         <div>
-                            <img class="photo img-fluid img-responsive" src="data:image/jpg;base64,${produto.procam}"  />
+                            <img class="photo img-fluid img-responsive" src="data:image/png;base64,${produto.procam}"  />
                             <div class="form-check">
                             <input type="checkbox" name="tfAlteraFoto" class="form-check-input">
                             <label class="form-check-label">Alterar Foto</label>

@@ -5,13 +5,16 @@
  */
 package mvc.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gustav0
  */
 
 
-public class Cliente {
+public class Cliente implements Serializable{
+    
     private long cliid;
     private String clinome;
     private String cliemail;

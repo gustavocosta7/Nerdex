@@ -5,15 +5,26 @@
  */
 package mvc.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
 import mvc.bean.Mensagem;
+import mvc.bean.ProdutoCategoria;
 import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
 import mvc.dao.CurriculoDao;
+import mvc.dao.ProdutoDAO;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,49 +42,78 @@ public class ControllerGeral {
 
     private final ClienteDAO dao;
     private final CategoriaDAO catdao;
+    private final ProdutoDAO prodao;
     private final CurriculoDao curdao;
     
     
     @Autowired
-    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao){
+    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao){
         this.dao = dao;
         this.catdao = catdao;
         this.curdao = curdao;
+        this.prodao = prodao;
     }
     
     @RequestMapping("/")
     public String index(Model model){
+        List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
+
+        try {
+            setImagePath(pc);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        model.addAttribute("produtos",pc);
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "index";
     }
+    
+    private void setImagePath(List<ProdutoCategoria> listaProdutos) throws IOException{
+        
+        for (ProdutoCategoria pc : listaProdutos) {
+            
+            BufferedImage bImage = ImageIO.read(new File(pc.getProcam()));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( bImage, "png", baos );
+            baos.flush();
+            byte[] imageInByteArray = baos.toByteArray();
+            baos.close();                                   
+            String b64 = DatatypeConverter.printBase64Binary(imageInByteArray);
+            pc.setProcam(b64);
+            
+        }
+            
+    }
+    
+    
     @RequestMapping("/index")
     public String retornaIndex(){
         return "/index";
     }
     
     @RequestMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/login";
+        
     }
     
     @RequestMapping("/cadastro-usuario")
-   public String form(){
+   public String form(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/form_usuario_cadastro";
     }
    
     @RequestMapping("/exibe-usuario")
-    public String exibeUsuario(){
+    public String exibeUsuario(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/usuario_perfil";
     }
     
-    
-   @RequestMapping("/menu")
-    public String menu(){
-        return "tarefa/menu";
-    }
-    
     @RequestMapping("/fale_conosco")
-    public String faleConosco(){
+    public String faleConosco(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/fale_conosco";
     }
     
@@ -86,33 +126,36 @@ public class ControllerGeral {
         cliente.setClifone(request.getParameter("tfFone"));
         model.addAttribute("adicionado",true);
         dao.adicionaCliente(cliente);
-        
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/form_usuario_cadastro";
         
     }
     
     @RequestMapping("/valida-login") 
 
-    public String validaLogin(Cliente cliente, HttpServletRequest request, Model model){ 
-       boolean cadastrado; 
-
+    public String validaLogin(HttpServletRequest request, Model model, HttpSession httpSession){ 
+      httpSession = request.getSession();
+       Cliente cliente = new Cliente();
        cliente.setCliemail(request.getParameter("tfEmail")); 
        cliente.setClisenha(request.getParameter("tfSenha")); 
-
-       cadastrado = dao.validaCliente(cliente); 
-
-        if(cadastrado){ 
-
-            String nome = dao.getNomeClienteDAO(cliente);
-            model.addAttribute("clienteNome", nome);
-            model.addAttribute("cliente",dao.getCliente(cliente));
+       boolean cadastrado = dao.validaCliente(cliente);
+        System.out.println(cadastrado + " ------------");
+       
+       if(cadastrado){
+            Cliente c1 =  dao.getCliente(cliente);
+            try{
+                httpSession.setAttribute("cliente",c1);
+            
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
             return "tarefa/usuario_perfil";
-        }else{ 
-
+       }else{
             return "/index"; 
-
-        } 
-
+       }
+            
+       
     } 
     
     @RequestMapping("/alteraCliente")
@@ -127,12 +170,14 @@ public class ControllerGeral {
         
 
         dao.alteraCliente(cliente);
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         model.addAttribute("cliente",dao.getCliente(cliente));
         return "tarefa/usuario_perfil";
     }
     
     @RequestMapping("/removeCliente")
     public String removeCliente(long id){
+        
         dao.removerCliente(id);
         return "redirect:/index";
     }
@@ -141,18 +186,19 @@ public class ControllerGeral {
     ///////////////MENSAGENS//////////////////////
     
     @RequestMapping("/adicionaMensagem")
-    public String addMensagem(HttpServletRequest request){
+    public String addMensagem(HttpServletRequest request, Model  model){
         Mensagem m = new Mensagem();
         m.setMennome(request.getParameter("tfNome"));
         m.setMendesc(request.getParameter("tfMensagem"));
         dao.adicionaMensagem(m);
-        
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/fale_conosco";
     }
     
     
     @RequestMapping("/trabalhe_conosco")
-    public String trabalheConosco(){        
+    public String trabalheConosco(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/trabalhe_conosco";
     }
     
@@ -186,12 +232,14 @@ public class ControllerGeral {
             photoName);
 
             curdao.adicionaCurriculo(cd);
+            model.addAttribute("listaCategorias",catdao.listarCategorias());
             return "tarefa/trabalhe_conosco";
             
         } catch (IOException ex) {
 //            model.addAttribute("erro", ex.toString());
 //            return "usuario/usuario-erro-adicao";
         } 
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/trabalhe_conosco";
     }
 //    
