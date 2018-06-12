@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import mvc.bean.Categoria;
 import mvc.bean.Produto;
 import mvc.bean.ProdutoCategoria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public class ProdutoDAO {
     public List<ProdutoCategoria> listarProdutosComFotoSelecionado(int id) {
         List<ProdutoCategoria> produtos = new ArrayList<>();
         String sql = "select proid, procatid,pronome, catdes, propreco, prodescricao,procam from produto inner join categoria on catid = procatid"
-                + " where procatid = id";
+                + " where procatid = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);

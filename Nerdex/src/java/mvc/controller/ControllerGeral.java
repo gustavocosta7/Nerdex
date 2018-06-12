@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +18,7 @@ import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
 import mvc.bean.Mensagem;
 import mvc.bean.ProdutoCategoria;
+import mvc.dao.CarrinhoDao;
 import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
 import mvc.dao.CurriculoDao;
@@ -44,14 +44,16 @@ public class ControllerGeral {
     private final CategoriaDAO catdao;
     private final ProdutoDAO prodao;
     private final CurriculoDao curdao;
+    private final CarrinhoDao carrinhoDao;
     
     
     @Autowired
-    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao){
+    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao, CarrinhoDao carrinhoDao){
         this.dao = dao;
         this.catdao = catdao;
         this.curdao = curdao;
         this.prodao = prodao;
+        this.carrinhoDao = carrinhoDao;
     }
     
     @RequestMapping("/")
@@ -131,28 +133,38 @@ public class ControllerGeral {
         
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, HttpSession httpSession){
+        System.out.println("Deslogado");
+        return "/";
+    }
+    
     @RequestMapping("/mostrarCategoria")
     public String mostrarCategoria(int id,Model model){
+      
+            List<ProdutoCategoria> pc = prodao.listarProdutosComFotoSelecionado(id);
+            try{
+                setImagePath(pc);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
             
+            model.addAttribute("produtos",pc);
             model.addAttribute("listaCategorias",catdao.listarCategorias());
-            model.addAttribute("produtos",prodao.listarProdutosComFotoSelecionado(id));
-       
-        String caminho ="";
-        switch(id){
-            case 1:
-                caminho = "tarefa/pages/cat_livro";
-            case 2:
-                caminho = "tarefa/pages/cat_camisa";
-            case 3:
-                caminho = "tarefa/pages/cat_caneca";
-            case 4: 
-                caminho = "tarefa/pages/cat_pelucia";
-        }
-        return "caminho";
+            switch(id){
+                case 1:
+                    return  "tarefa/pages/cat_livro";
+                case 2:
+                    return "tarefa/pages/cat_camisa";
+                case 3:
+                    return "tarefa/pages/cat_caneca";
+                case 4:
+                    return "tarefa/pages/cat_pelucia";
+            }
+        return "/";            
     }
     
     @RequestMapping("/valida-login") 
-
     public String validaLogin(HttpServletRequest request, Model model, HttpSession httpSession){ 
       httpSession = request.getSession();
        Cliente cliente = new Cliente();
@@ -163,7 +175,6 @@ public class ControllerGeral {
             Cliente c1 =  dao.getCliente(cliente);
             try{
                 httpSession.setAttribute("cliente",c1);
-            
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -175,6 +186,13 @@ public class ControllerGeral {
             
        
     } 
+    
+    @RequestMapping("/add")
+    public String adicionaCarrinho(int proid,int cliid){
+        
+        
+        return "/";
+    }
     
     @RequestMapping("/alteraCliente")
     public String altera(HttpServletRequest request, Model model){
