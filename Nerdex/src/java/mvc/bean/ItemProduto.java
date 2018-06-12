@@ -20,6 +20,10 @@ public class ItemProduto {
         this.iteqtde = iteqtde;
     }
 
+    public ItemProduto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Long getIteproid() {
         return iteproid;
     }

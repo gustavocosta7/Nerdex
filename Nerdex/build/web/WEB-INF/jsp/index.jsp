@@ -67,7 +67,7 @@
                                         </c:if>
 
                                         <button type="button" class="btn btn-sm btn-info">
-                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">0</span>
+                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">${carrinho.iteqtde}</span>
                                             </button>
                                         </div>
                                 </div>
@@ -96,7 +96,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">${produto.procatdescricao}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
                                 <p class="card-text">${produto.prodes}</p>
-                                <a href="#" class="btn btn-primary btn-block" onclick="${pageContext.request.contextPath}/addCarrinho(${produto.proid})">Adicionar Carrinho</a>
+                                <a href="#" onclick="addCarinho()" class="btn btn-primary btn-block">Adicionar Carrinho</a>
                                 <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
                             </div>
                         </div>
@@ -137,6 +137,6 @@
         <!-- Aqui vão configuração de js e css -->
         <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-        <script src="<c:url value="/resources/js/funcaoCarrinho.js"/>"</script>
+        <script src="<c:url value="/resources/js/log_funcoes.js"/>"></script>
     </body>
 </html>

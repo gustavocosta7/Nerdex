@@ -5,6 +5,6 @@
  */
 
 
-function iniciaSessao(){
-    
+function addCarinho(){
+    alert("PEGOU kkkkkkk");
 }

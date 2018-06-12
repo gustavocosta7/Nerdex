@@ -10,12 +10,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
+import mvc.bean.ItemProduto;
 import mvc.bean.Mensagem;
 import mvc.bean.ProdutoCategoria;
 import mvc.dao.CarrinhoDao;
@@ -23,9 +26,6 @@ import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
 import mvc.dao.CurriculoDao;
 import mvc.dao.ProdutoDAO;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,9 +83,7 @@ public class ControllerGeral {
             baos.close();                                   
             String b64 = DatatypeConverter.printBase64Binary(imageInByteArray);
             pc.setProcam(b64);
-            
         }
-            
     }
     
     
@@ -166,7 +164,7 @@ public class ControllerGeral {
     
     @RequestMapping("/valida-login") 
     public String validaLogin(HttpServletRequest request, Model model, HttpSession httpSession){ 
-      httpSession = request.getSession();
+       httpSession = request.getSession();
        Cliente cliente = new Cliente();
        cliente.setCliemail(request.getParameter("tfEmail")); 
        cliente.setClisenha(request.getParameter("tfSenha")); 
@@ -187,13 +185,33 @@ public class ControllerGeral {
        
     } 
     
-    @RequestMapping("/add")
-    public String adicionaCarrinho(int proid,int cliid){
-        
-        
-        return "/";
-    }
     
+//    ///////////////////////////////////////////ADICIONA CARRINHO////////////////////////////////////////////
+    @RequestMapping("/add")
+    public String adicionaCarrinho(Integer proid,Integer cliid,Model model){
+        
+         List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
+            
+        try {
+            setImagePath(pc);
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ItemProduto item = carrinhoDao.existeItem(proid, cliid);
+        if(item !=null){
+            int quantidade = item.getIteqtde() + 1;
+            item.setIteqtde(quantidade);
+//            carrinhoDao.updateItem(item);
+        }
+//        
+//        model.addAttribute("produtos",pc);
+////        model.addAttribute("listaCategorias",catdao.listarCategorias());
+//        System.out.println("ADICIONADO NO CARRINHO");
+        return "/index";
+        
+    }
+    //////////////////////////////////////////////////ALTERA CLIENTE///////////////////////////////
     @RequestMapping("/alteraCliente")
     public String altera(HttpServletRequest request, Model model){
         Cliente cliente = new Cliente();

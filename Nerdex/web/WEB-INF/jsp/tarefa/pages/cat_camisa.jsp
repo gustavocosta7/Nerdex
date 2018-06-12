@@ -22,7 +22,7 @@
 
     <body>
         <a href="index.jsp"></a>
-        <!-- NAVBAR -->
+      <!-- NAVBAR -->
         <div class="container">
             <div class="row">
 
@@ -47,7 +47,7 @@
                                                 </a>
                                                 <div id="categorias" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     <c:forEach items="${listaCategorias}" var="categoria">
-                                                        <a class="dropdown-item" href="href="mostrarCategoria?id=${categoria.catid}"">${categoria.catdes}</a>
+                                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/mostrarCategoria?id=${categoria.catid}">${categoria.catdes}</a>
                                                         <div class="dropdown-divider"></div>
                                                     </c:forEach>
                                                 </div>
