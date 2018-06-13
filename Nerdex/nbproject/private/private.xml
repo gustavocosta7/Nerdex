@@ -12,14 +12,7 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/exibe_produto.jsp</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/src/java/mvc/controller/AdminController.java</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/listar_produto.jsp</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/produto/produto_principal.jsp</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/dispatcher-servlet.xml</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/src/java/mvc/controller/CategoriaController.java</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/src/java/mvc/controller/ProdutoController.java</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/applicationContext.xml</file>
+            <file>file:/C:/Users/600109/Documents/git/Nerdex/src/java/mvc/dao/CarrinhoDao.java</file>
         </group>
     </open-files>
 </project-private>

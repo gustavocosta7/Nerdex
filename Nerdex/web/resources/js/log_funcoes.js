@@ -5,6 +5,6 @@
  */
 
 
-function addCarinho(){
-    alert("PEGOU kkkkkkk");
+function adicionaCarrinho(){
+    
 }

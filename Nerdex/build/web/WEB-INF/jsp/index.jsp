@@ -96,7 +96,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">${produto.procatdescricao}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
                                 <p class="card-text">${produto.prodes}</p>
-                                <a href="#" onclick="addCarinho()" class="btn btn-primary btn-block">Adicionar Carrinho</a>
+                                <a href="#" onclick="adicionaCarrinho()" class="btn btn-primary btn-block">Adicionar Carrinho</a>
                                 <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
                             </div>
                         </div>

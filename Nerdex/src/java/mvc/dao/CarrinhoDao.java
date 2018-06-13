@@ -66,13 +66,14 @@ public class CarrinhoDao {
             produto.setItecliid(rs.getLong("itecliid"));
             produto.setIteqtde(rs.getInt("iteqtde"));
           
-            
-            return produto;
             } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-         return produto;
-    }
+            return produto;
+        }
+
+}
+    
         
 //        ----------UPDATE
         
