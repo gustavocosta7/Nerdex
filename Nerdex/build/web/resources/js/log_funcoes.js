@@ -5,6 +5,7 @@
  */
 
 
-function adicionaCarrinho(){
+function adicionaCarrinho(proid,cliid){
+    $.post(${pageContext.request.contextPath}/"adicionaCarrinho", {'proid':proid}, {'cliid':cliid});
     
 }

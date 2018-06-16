@@ -10,10 +10,31 @@ package mvc.bean;
  * @author Aluno
  */
 public class ItemProduto {
+    private Long iteid;
     private Long iteproid;
     private Long itecliid;
     private Integer iteqtde;
+    private boolean itefinalizado;
 
+    public boolean isItefinalizado() {
+        return itefinalizado;
+    }
+
+    public void setItefinalizado(boolean itefinalizado) {
+        this.itefinalizado = itefinalizado;
+    }
+    
+    
+
+    public Long getIteid() {
+        return iteid;
+    }
+
+    public void setIteid(Long iteid) {
+        this.iteid = iteid;
+    }
+
+    
     public ItemProduto(Long iteproid, Long itecliid, Integer iteqtde) {
         this.iteproid = iteproid;
         this.itecliid = itecliid;
@@ -21,7 +42,6 @@ public class ItemProduto {
     }
 
     public ItemProduto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Long getIteproid() {

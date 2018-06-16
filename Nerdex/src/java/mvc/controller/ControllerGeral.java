@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 import javax.xml.bind.DatatypeConverter;
 import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
@@ -187,7 +188,7 @@ public class ControllerGeral {
     
     
 //    ///////////////////////////////////////////ADICIONA CARRINHO////////////////////////////////////////////
-    @RequestMapping("/add")
+    @RequestMapping("/adicionaCarrinho")
     public String adicionaCarrinho(Integer proid,Integer cliid,Model model){
         
          List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
@@ -197,17 +198,27 @@ public class ControllerGeral {
         } catch (IOException ex) {
             Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        ItemProduto item = carrinhoDao.existeItem(proid, cliid);
-        if(item !=null){
+        ItemProduto ip = new ItemProduto();
+        ItemProduto item = carrinhoDao.existeItem(1, 1);
+        if(item.getIteproid() !=null){
             int quantidade = item.getIteqtde() + 1;
             item.setIteqtde(quantidade);
-//            carrinhoDao.updateItem(item);
+            carrinhoDao.updateItemQtde(item);
+            System.out.println("PASSOU EXISTENTE");
+        }else{
+//            Adiciona no carrinho;
+            ip.setIteproid((long)1);
+            ip.setItecliid((long)1);
+            ip.setIteqtde(1);
+           
+            System.out.println("PASSOU ADICIONADO");
+            carrinhoDao.adicionarItem(item);
         }
 //        
-//        model.addAttribute("produtos",pc);
-////        model.addAttribute("listaCategorias",catdao.listarCategorias());
-//        System.out.println("ADICIONADO NO CARRINHO");
+        model.addAttribute("produtos",pc);
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
+        System.out.println(carrinhoDao.qtdeItems((long)1)+"---------");
+        model.addAttribute("quantidade", carrinhoDao.qtdeItems((long)1));
         return "/index";
         
     }

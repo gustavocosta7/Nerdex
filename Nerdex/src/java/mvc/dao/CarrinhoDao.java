@@ -8,6 +8,8 @@ package mvc.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import mvc.bean.ItemProduto;
 import mvc.bean.Produto;
@@ -20,85 +22,96 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CarrinhoDao {
-    
+
     private final Connection connection;
+
     @Autowired
-        public CarrinhoDao(DataSource dataSource) {
-          try {
+    public CarrinhoDao(DataSource dataSource) {
+        try {
             this.connection = dataSource.getConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-    
-    
+
 //    --------------INSERT
-        public boolean adicionarItem(ItemProduto p) {
-        String sql = "insert into itemproduto (iteproid, itecliid, iteqtde)  values (?,?,?)";
+    public boolean adicionarItem(ItemProduto p) {
+        String sql = "insert into itemproduto values (?,?,?,?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, p.getIteproid());
             ps.setLong(2, p.getItecliid());
             ps.setLong(3, p.getIteqtde());
+            ps.setBoolean(4, p.isItefinalizado());
             ps.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return true;
     }
-        
+
 //        ----------SELECT
-        
-        public ItemProduto existeItem(Integer proid, Integer cliid) {
-        String sql = "select *from itemproduto; iteproid, itecliid, iteqtde while iteproid = ? itecliid = ?";
-         
-            ItemProduto produto = new ItemProduto();
+    public ItemProduto existeItem(Integer proid, Integer cliid) {
+        String sql = "select *from itemproduto where (iteproid = ? and itecliid = ?) and itefinalizado = false";
+
+        ItemProduto produto = new ItemProduto();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, proid);
             ps.setLong(2, cliid);
             ResultSet rs = ps.executeQuery();
-            
+
             rs.next();
             
             produto.setIteproid(rs.getLong("iteproid"));
             produto.setItecliid(rs.getLong("itecliid"));
             produto.setIteqtde(rs.getInt("iteqtde"));
-          
-            } catch (Exception e) {
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-            return produto;
+        return produto;
+    }
+
+//        LISTA PRODUTOS CARRINHO SEM ESTAR FINALIZADO
+    public int qtdeItems(Long cliid) {
+        String sql = "select *from itemproduto where itecliid = ? and itefinalizado = false";
+        int quantidade = 0;
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setLong(1, cliid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                quantidade = rs.getInt("qtde");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+        return quantidade;
+    }
 
-}
-    
-        
 //        ----------UPDATE
-        
-        
-        
-//        ----------DELETE
+    public boolean updateItemQtde(ItemProduto item) {
+        String sql = "update itemcarrinho set iteqtde = ? where iteproid = ? itecliid = ?";
 
-//    public void updateItem(ItemProduto item) {
-//        String sql = "update itemcarrinho set iteqtde = ? where iteproid = ? itecliid = ?";
-//
-//        try {
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//
-//            ps.setString(1, item.getIteqtde());
-//            ps.setString(2, item.getIteproid());
-//            ps.setString(3, item.getIteproid());
-//            ps.setString(4, cliente.getClifone());
-//            ps.setLong(5, cliente.getCliid());
-//
-//            ps.execute();
-//
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        return true;
-//        
-//    }
-//}
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setInt(1, item.getIteqtde());
+            ps.setLong(2, item.getIteproid());
+            ps.setLong(3, item.getItecliid());
+            ps.execute();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+
+    }
+
+//        ----------DELETE
+}

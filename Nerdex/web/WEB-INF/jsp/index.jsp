@@ -67,7 +67,7 @@
                                         </c:if>
 
                                         <button type="button" class="btn btn-sm btn-info">
-                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">${carrinho.iteqtde}</span>
+                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">${quantidade}</span>
                                             </button>
                                         </div>
                                 </div>
@@ -96,7 +96,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">${produto.procatdescricao}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
                                 <p class="card-text">${produto.prodes}</p>
-                                <a href="#" onclick="adicionaCarrinho()" class="btn btn-primary btn-block">Adicionar Carrinho</a>
+                                <a href="${pageContext.request.contextPath}/adicionaCarrinho?proid=${produto.proid}&?cliid=${cliente.cliid}" class="btn btn-primary btn-block">Adicionar Carrinho</a>
                                 <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
                                     <p class="card-text">${produto.prodes}</p>
                                     <input type="hidden" name="tfId" value="${produto.proid}">
-                                    <button href="#" class="btn btn-primary btn-block">Adicionar Carrinho</button>
+                                    <a href="${pageContext.request.contextPath}/adicionaCarrinho?proid=${produto.proid}?cliid=${cliente.cliid}" class="btn btn-primary btn-block">Adicionar Carrinho</a>
                                     <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
                                 </form>
 
