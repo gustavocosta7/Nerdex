@@ -11,6 +11,13 @@
     <body>
         <!-- CORPO -->
         <div class="container">
+          <div class="row">
+            <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h2>Produtos</h2>
+              </div>
+              <div class="col-md-2"></div>
+          </div>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -20,35 +27,34 @@
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Categoria</th>
-                                <th>Preço</th>
+                                <th>Preco</th>
                             </tr>
-                            <c:forEach items="${produtos}" var="produtos">
-                                <tr>
-                                    <td>${produtos.proid}</td>               
-                                    <td>${produtos.pronome}</td>
-                                    <td>${produtos.procatdescricao}</td>
-                                    <td>${produtos.propreco}</td>
-                                    <td>
-                                        <a class="btn btn-danger"href="${pageContext.request.contextPath}/removeProduto?id=${produtos.proid}"
-                                           onclick="confirm('Confirma exclusão desse produto?')">X</a>
-                                        <a class="btn btn-outline-secondary"href="${pageContext.request.contextPath}/exibeProduto?id=${produtos.proid}"
-                                          >
-                                            <img alt="Alterar" src="<c:url value='/resources/img/lapis.png'></c:url>"/></a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </div>
-                        <div class="col-md-2"></div>
-
+                        </thead>
+                        <c:forEach items="${produtos}" var="produtos">
+                          <tr>
+                            <td>${produtos.proid}</td>
+                            <td>${produtos.pronome}</td>
+                            <td>${produtos.procatdescricao}</td>
+                            <td>${produtos.propreco}</td>
+                            <td>
+                              <a class="btn btn-danger"href="${pageContext.request.contextPath}/removeProduto?id=${produtos.proid}"
+                                onclick="confirm('Confirma exclusï¿½o desse produto?')">X</a>
+                                <a class="btn btn-outline-secondary"href="${pageContext.request.contextPath}/exibeProduto?id=${produtos.proid}"
+                                  >
+                                  <img alt="Alterar" src="<c:url value='/resources/img/lapis.png'></c:url>"/></a>
+                                </td>
+                              </tr>
+                        </c:forEach>
+                      </table>
+                      <div class="row">
+                        <a href="${pageContext.request.contextPath}/produtoPrincipal"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
+                      </div>
                 </div>
-                
+                <div class="col-md-2"></div>
+                </div>
             </div>
-            <div class="container">
-                    <div class="row">
-                        <div class="col-md-12"><a class="btn btn-info" href="<c:url value='/produtoPrincipal'/>">Voltar</a></div>
-                    </div>
-             </div>
-            
+
+
             <!-- Aqui vï¿½o configuraï¿½ï¿½o de js e css -->
             <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
             <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : form_usuario_cadastro
     Created on : 26/05/2018, 11:43:23
     Author     : gustav0
@@ -28,7 +28,7 @@
                             <input name="tfNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu nome">
                         </div>
                         <button type="submit" class="btn btn-primary">Confirmar</button>
-                        <a href="${pageContext.request.contextPath}/crudCategoria"> Voltar </a>
+                        <a href="${pageContext.request.contextPath}/crudCategoria"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
                     </form>
                 </div>
                 <div class="col-md-4"></div>
