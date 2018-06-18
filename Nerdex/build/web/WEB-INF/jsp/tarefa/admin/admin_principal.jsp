@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : admin_principal
     Created on : 28/05/2018, 05:01:56
     Author     : hdolz
@@ -21,9 +21,9 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <h3>Admin Principal</h3>
-                    <a href="${pageContext.request.contextPath}/crudCategoria"><button type="button" class="btn btn-primary btn-lg btn-block">Categorias</button></a>
-                    <a href="${pageContext.request.contextPath}/crudProduto"><button type="button" class="btn btn-secondary btn-lg btn-block"> Produtos </button></a>
-                    <a href="${pageContext.request.contextPath}/crudMensagem"><button type="button" class="btn btn-secondary btn-lg btn-block"> Mensagens </button></a>
+                    <a href="${pageContext.request.contextPath}/crudCategoria"><button type="button" class="btn btn-primary btn-lg btn-block">Categorias</button></a><br>
+                    <a href="${pageContext.request.contextPath}/crudProduto"><button type="button" class="btn btn-primary btn-lg btn-block"> Produtos </button></a><br>
+                    <a href="${pageContext.request.contextPath}/crudMensagem"><button type="button" class="btn btn-primary btn-lg btn-block"> Mensagens </button></a>
                 </div>
                 <div class="col-md-4"></div>
             </div>

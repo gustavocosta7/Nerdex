@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : admin_principal
     Created on : 28/05/2018, 05:01:56
     Author     : hdolz
@@ -21,8 +21,8 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <h3>Categoria</h3>
-                    <a href="${pageContext.request.contextPath}/form-adicionar-categoria"><button type="button" class="btn btn-primary btn-lg btn-block">Inserir</button></a>
-                    <a href="${pageContext.request.contextPath}/listarCategoria"><button type="button" class="btn btn-secondary btn-lg btn-block"> Listar </button></a>
+                    <a href="${pageContext.request.contextPath}/form-adicionar-categoria"><button type="button" class="btn btn-primary btn-lg btn-block">Inserir</button></a><br>
+                    <a href="${pageContext.request.contextPath}/listarCategoria"><button type="button" class="btn btn-primary btn-lg btn-block"> Listar </button></a><br>
                     <a href="${pageContext.request.contextPath}/admin-principal"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
                 </div>
                 <div class="col-md-4"></div>

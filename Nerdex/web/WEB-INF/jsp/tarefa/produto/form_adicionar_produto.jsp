@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : form_usuario_cadastro
     Created on : 26/05/2018, 11:43:23
     Author     : gustav0
@@ -13,10 +13,8 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>NERDEX - Area Administrador</title>
-
     </head>
     <body>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-4"></div>
@@ -31,7 +29,7 @@
                                 <option selected>Escolha uma...</option>
                                 <c:forEach items="${listaCategorias}" var="categoria">
                                     <option value="${categoria.catid}">${categoria.catdes}</option>
-                                </c:forEach> 
+                                </c:forEach>
                             </select>
                             <label>Preco</label>
                             <input name="tfPreco" type="text" class="form-control" placeholder="Preco do produto">
@@ -41,7 +39,7 @@
                             <input name="tfFoto" type="file" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Confirmar</button>
-                        <a href="${pageContext.request.contextPath}/crudProduto"> Voltar </a>
+                        <a href="${pageContext.request.contextPath}/crudProduto"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
                     </form>
                 </div>
                 <div class="col-md-4"></div>
