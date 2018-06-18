@@ -41,7 +41,7 @@
                                                 </a>
                                                 <div id="categorias" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     <c:forEach items="${listaCategorias}" var="categoria">
-                                                        <a class="dropdown-item" href="href="mostrarCategoria?id=${categoria.catid}"">${categoria.catdes}</a>
+                                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/mostrarCategoria?id=${categoria.catid}">${categoria.catdes}</a>
                                                         <div class="dropdown-divider"></div>
                                                     </c:forEach>
                                                 </div>
@@ -58,77 +58,24 @@
                                                 </form>
                                             </ul>
 
-                      <c:if test="${cliente.clinome == null}">
-                          <a  class=" btn btn-primary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Login</a>
-                      </c:if>
-                      <c:if test="${cliente.clinome != null}">
-                          <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                          <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Logout</a>
-                      </c:if>
+                                        <c:if test="${cliente.clinome == null}">
+                                            <a  class=" btn btn-primary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Login</a>
+                                        </c:if>
+                                        <c:if test="${cliente.clinome != null}">
+                                            <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
+                                        </c:if>
 
-                                        <button type="button" class="btn btn-sm btn-info">
-                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">0</span>
-                                            </button>
+                                        <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
+                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="qtde" class="badge badge-light"></span>
+                                        </a>
                                         </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
-            <!-- CORPO -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12" style="margin-left: 25%">
-                         <h1 class="h1">Cadastro de Cliente</h1>
-                    </div>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form method="post"  action="${pageContext.request.contextPath}/cadastro-cliente" style="margin: 0 auto;  ">
-                            
-                            <div class="form-row col-md-12" style="margin-left: 25%">
-                                <div class="form-group col-md-3">
-                                    <label>Nome</label>
-                                    <input type="text" class="form-control" name="tfNome" placeholder="Nome Completo" required>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" placeholder="Email" name="tfEmail" required>
-                                </div>
-                            </div>
-                            <div class="form-row form-row col-md-12" style="margin-left: 25%">
-                                <div class="form-group col-md-3">
-                                    <label>Senha</label>
-                                    <input type="password" class="form-control" name="tfSenha" required>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputPassword4">Telefone</label>
-                                    <input type="tel" class="form-control" placeholder="(00)00000-0000" name="tfFone" required>
-                                </div>
-                            </div>
-                            <div class="form-row form-row col-md-12">
-                                <div class="form-group col-md-12" style="margin-left: 50%">
-                                    <button type="submit" class="btn btn-outline-success centered">Cadastrar</button>
-                                </div>
-                               <c:if test="${adicionado == true}">
-                                                    <div class="alert alert-success" role="alert">
-                                                        Usuario adicionado com sucesso!
-                                                    </div>
-                                                </c:if>
-                            </div>
-
-                            
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-
             <!-- Modal -->
             <div class="modal fade" id="modaluser" tabindex="-1" role="dialog" aria-labelledby="modal-user" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

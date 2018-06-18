@@ -16,7 +16,7 @@
 
     <body>
         <a href="index.jsp"></a>
-        <!-- NAVBAR -->
+          <!-- NAVBAR -->
         <div class="container">
             <div class="row">
 
@@ -63,7 +63,7 @@
                                         </c:if>
                                         <c:if test="${cliente.clinome != null}">
                                             <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/">Logout</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
                                         </c:if>
 
                                         <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
@@ -72,13 +72,11 @@
                                         </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
-        <!--CORPO -->
+                                        <!--CORPO -->
         <div class="container">
             <div class="row">
                 <div class="col-md-12"></div>

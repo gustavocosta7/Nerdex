@@ -72,7 +72,6 @@
                                         </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -128,7 +127,7 @@
                                     <p class="card-text">${produto.prodes}</p>
                                     <input type="hidden" name="tfId" value="${produto.proid}">
                                 <c:if test="${cliente.clinome != null}">
-<a href="#" onclick="adicionaCarrinho(${produto.proid},${produto.pronome});" class="btn btn-primary btn-block">Adicionar Carrinho</a>
+                                    <a href="#" onclick="adicionaCarrinho(${produto.proid},${produto.pronome});" class="btn btn-primary btn-block">Adicionar Carrinho</a>
                                 </c:if>
                                 <c:if test="${cliente.clinome == null}">
                                   <button type="button" class="btn btn-primary btn-block" data-toggle="modal"

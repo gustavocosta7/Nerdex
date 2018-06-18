@@ -16,7 +16,7 @@
         <title>Meu perfil - NERDEX</title>
     </head>
     <body>
-        <!-- NAVBAR -->
+          <!-- NAVBAR -->
         <div class="container">
             <div class="row">
 
@@ -63,16 +63,15 @@
                                         </c:if>
                                         <c:if test="${cliente.clinome != null}">
                                             <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/">Logout</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
                                         </c:if>
 
-                                        <button type="button" class="btn btn-sm btn-info">
-                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="" class="badge badge-light">0</span>
-                                            </button>
+                                        <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
+                                            <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="qtde" class="badge badge-light"></span>
+                                        </a>
                                         </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

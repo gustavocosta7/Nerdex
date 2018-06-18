@@ -22,7 +22,7 @@
 
     <body>
         <a href="index.jsp"></a>
-        <!-- NAVBAR -->
+           <!-- NAVBAR -->
         <div class="container">
             <div class="row">
 
@@ -69,16 +69,15 @@
                                         </c:if>
                                         <c:if test="${cliente.clinome != null}">
                                             <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/">Logout</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
                                         </c:if>
 
-                                        <button type="button" class="btn btn-sm btn-info">
+                                        <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
                                             <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="qtde" class="badge badge-light"></span>
-                                            </button>
+                                        </a>
                                         </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -89,16 +88,44 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div  class="col-md-8">
-                     <table id="produtos" class="table">
-                        
-                     </table>
-
-
-                </div>
+                    <form method="post" action="${pageContext.request.contextPath}/finalizaCompra">
+                        <table id="produtos" class="table">
+                            
+                        </table>
+                        <c:if test="${cliente.cliid != null}">
+                             <input type="submit" class="btn btn-primary btn-block" value="FINALIZAR COMPRA"/>
+                        </c:if>                        
+                        <c:if test="${cliente.cliid == null}">
+                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                        data-target="#modalLogin">FINALIZAR COMPRA</button>    
+                        </c:if>
+                             <input type="text" name="tfCliid" value="${cliente.cliid}" hidden readonly="readonly"/>
+                    </form>
+                 </div>
                 <div class="col-md-2"></div>
             </div>
         </div>   
-
+  <!-- Modal -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Entrar no NERDEX</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Faça login no NERDEX para continuar suas compras
+              </div>
+              <div class="modal-footer">
+                <a  class="btn btn-danger" href="#" data-dismiss="modal">Fechar</a>
+                <a  class="btn btn-primary" href="${pageContext.request.contextPath}/login">Entrar</a>
+                <a  class="btn btn-outline-primary" href="${pageContext.request.contextPath}/cadastro-usuario">Cadastrar</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Aqui vão configuração de js e css -->
         <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
