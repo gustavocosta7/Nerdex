@@ -22,6 +22,7 @@
                                 <th>Categoria</th>
                                 <th>Preço</th>
                             </tr>
+                        </thead>
                             <c:forEach items="${produtos}" var="produtos">
                                 <tr>
                                     <td>${produtos.proid}</td>               
@@ -37,6 +38,7 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                        </table>
                         </div>
                         <div class="col-md-2"></div>
 

@@ -87,6 +87,7 @@ public class ControllerGeral {
         }
     }
     
+
     
     @RequestMapping("/index")
     public String retornaIndex(){
@@ -100,12 +101,20 @@ public class ControllerGeral {
         
     }
     
-    @RequestMapping("/cadastro-usuario")
+   @RequestMapping("/cadastro-usuario")
    public String form(Model model){
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/form_usuario_cadastro";
     }
+    
+   @RequestMapping("/logout")
+   public String logout(Model model, HttpSession session){
+       session.removeAttribute("cliente");
+       model.addAttribute("listaCategorias",catdao.listarCategorias());
+       return "tarefa/logout";
+    }
    
+
     @RequestMapping("/exibe-usuario")
     public String exibeUsuario(Model model){
         model.addAttribute("listaCategorias",catdao.listarCategorias());
@@ -132,12 +141,6 @@ public class ControllerGeral {
         
     }
 
-    @RequestMapping("/logout")
-    public String logout(HttpServletRequest request, HttpSession httpSession){
-        System.out.println("Deslogado");
-        return "/";
-    }
-    
     @RequestMapping("/mostrarCategoria")
     public String mostrarCategoria(int id,Model model){
       
@@ -270,10 +273,6 @@ public class ControllerGeral {
     
    @RequestMapping(value="/adicionaCurriculo")
     public String adiciona(HttpServletRequest request, Model model){
-        /*
-        Configuracoes necessárias
-        Fonte: http://www.pablocantero.com/blog/2010/09/29/upload-com-spring-mvc/
-        */
         try {
              MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("tfCur");
@@ -289,10 +288,6 @@ public class ControllerGeral {
                        
             File photoFile = new File(photoPath);
             multipartFile.transferTo(photoFile);
-            
-            //backup
-            //File destinationDir = new File(applicationPath);
-            //FileUtils.copyFileToDirectory(photoFile, destinationDir);
             Curriculo cd = new Curriculo(request.getParameter("tfNome"),request.getParameter("tfEmail"),
             photoName);
 
@@ -301,19 +296,16 @@ public class ControllerGeral {
             return "tarefa/trabalhe_conosco";
             
         } catch (IOException ex) {
-//            model.addAttribute("erro", ex.toString());
-//            return "usuario/usuario-erro-adicao";
         } 
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/trabalhe_conosco";
     }
-//    
-//    @RequestMapping("/listaTarefa")
-//    public String lista(Model model){
-//        model.addAttribute("listaUsuarios",usuarioDAO.listaUsuarios());
-//        return "tarefa/listagem-usuarios";
-//    }
-//    
 
+    @RequestMapping("/carrinho")
+    public String carrinho(Model model){
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
+        return "tarefa/carro_compras";
+    }
+    
     
 }

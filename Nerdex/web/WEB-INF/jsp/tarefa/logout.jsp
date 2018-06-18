@@ -63,7 +63,7 @@
                                         </c:if>
                                         <c:if test="${cliente.clinome != null}">
                                             <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
+                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/">Logout</a>
                                         </c:if>
 
                                         <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
@@ -77,99 +77,28 @@
                     </div>
                 </div>
             </div>
-            <!-- CORPO -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12"><br></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <c:forEach items="${produtos}" var="produto" end="3">
-                    <div class="col-md-3">
-                        <div class="card text-center " style="width: 18rem;">
-                            <a href="#">
-                                <img class="img-responsive" src="data:image/png;base64,${produto.procam}" style="width: 100px; width: 100px" alt="${produto.pronome}">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">${produto.pronome}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${produto.procatdescricao}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
-                                <p class="card-text">${produto.prodes}</p>
-                                <c:if test="${cliente.clinome != null}">
-                                <a href="#" onclick="adicionaCarrinho(${produto.proid},'${produto.pronome}',${produto.propreco});" class="btn btn-primary btn-block">Adicionar Carrinho</a>
-                                </c:if>
-                                <c:if test="${cliente.clinome == null}">
-                                  <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#modalLogin">Adicionar Carrinho</button>    
-                                </c:if>
-                                <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
-                            
-                            </div>
-                        </div>
 
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
+        <!--CORPO -->
         <div class="container">
             <div class="row">
-                <c:forEach items="${produtos}" var="produto" begin="4" end="7">
-                    <div class="col-md-3">
-                        <div class="card text-center " style="width: 18rem;">
-                            <a href="#">
-                                <img class="img-responsive" src="data:image/png;base64,${produto.procam}" style="width: 100px; width: 100px" alt="${produto.pronome}">
-                            </a>
-                            <div class="card-body">
-                                <form method="POST" action="<c:url value="/carrinho"/>">
-                                    <h5 class="card-title">${produto.pronome}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">${produto.procatdescricao}</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted badge" style="color: green">R$ ${produto.propreco}</h6>
-                                    <p class="card-text">${produto.prodes}</p>
-                                    <input type="hidden" name="tfId" value="${produto.proid}">
-                                <c:if test="${cliente.clinome != null}">
-<a href="#" onclick="adicionaCarrinho(${produto.proid},${produto.pronome});" class="btn btn-primary btn-block">Adicionar Carrinho</a>
-                                </c:if>
-                                <c:if test="${cliente.clinome == null}">
-                                  <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#modalLogin">Adicionar Carrinho</button>    
-                                </c:if>
-                                    <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
-                                </form>
-
-                            </div>
-                        </div>
-
+                <div class="col-md-12"></div>
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                      <h1 class="display-4">Oh não, você está de saída</h1>
+                      <p class="lead">Agradecemos sua visita na NERDEX!</p>
+                      <hr class="my-4">Aproveite para voltar sempre que achar necessário</p>
+                      <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/" role="button">Página inicial</a>
+                      </p>
                     </div>
-                </c:forEach>
-
-            </div>
+                </div>
+                <div class="col-md-12"></div>
+             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Entrar no NERDEX</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Faça login no NERDEX para continuar suas compras
-              </div>
-              <div class="modal-footer">
-                <a  class="btn btn-danger" href="#" data-dismiss="modal">Fechar</a>
-                <a  class="btn btn-primary" href="${pageContext.request.contextPath}/login">Entrar</a>
-                <a  class="btn btn-outline-primary" href="${pageContext.request.contextPath}/cadastro-usuario">Cadastrar</a>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- Aqui vão configuração de js e css -->
         <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-        <script src="<c:url value="/resources/js/log_funcoes.js"/>"></script>
+        <script src="<c:url value="/resources/js/funcoes_logout.js"/>"></script>
         </body>
 </html>
