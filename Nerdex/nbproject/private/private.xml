@@ -12,10 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/resources/js/log_funcoes.js</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/index.jsp</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/src/java/mvc/controller/ControllerGeral.java</file>
-            <file>file:/C:/Users/gustav0/Documents/git/local/Nerdex/web/WEB-INF/jsp/tarefa/carro_compras.jsp</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/controller/CarrinhoController.java</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/dao/CarrinhoDAO.java</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/web/resources/js/funcoes_carrinho.js</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/web/WEB-INF/jsp/tarefa/carro_compras.jsp</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/bean/FormaPagamento.java</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/bean/Venda.java</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/controller/AdminController.java</file>
+            <file>file:/C:/Users/Aluno/Documents/git/Nerdex/src/java/mvc/dao/ProdutoDAO.java</file>
         </group>
     </open-files>
 </project-private>

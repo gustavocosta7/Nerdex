@@ -1,0 +1,97 @@
+create database nerdexdb;
+
+use nerdexdb;
+
+create table cliente(
+	cliid int not null auto_increment primary key,
+    clinome varchar(255) not null,
+    cliemail varchar(255) not null,
+    clisenha varchar(60) not null,
+    clifone varchar(60)
+	
+);
+
+create table administrador(
+	admid int not null auto_increment primary key,
+    admnome varchar(255) not null,
+    admemail varchar(255) not null,
+    admsenha varchar(60) not null
+);
+
+create table curriculo (
+	curid int not null auto_increment primary key,
+    curnome varchar(60) not null,
+    curemail varchar(60) not null,
+    curcaminho varchar(255) not null
+
+);
+
+create table categoria (
+	catid int not null auto_increment primary key,
+    catdes varchar(255) not null
+
+);
+
+create table produto (
+	proid int not null auto_increment primary key,
+    pronome varchar(255) not null,
+    propreco double not null,
+    prodescricao varchar(255),
+    procatid int not null,
+    procam varchar(200),
+    foreign key(procatid) references categoria(catid)
+);
+
+
+create table mensagem(
+	menid int not null auto_increment,
+    mennome varchar(60) not null,
+    mendesc varchar(240)not null,
+    primary key(menid)
+);
+
+create table itemcarrinho(
+	iteproid int not null,
+    itecliid int not null,
+    iteqtde int not null,
+    itefinalizado boolean,
+    
+    primary key(iteproid, itecliid),
+    foreign key (iteproid) references produto(proid),
+    foreign key (itecliid) references cliente(cliid)
+);
+
+create table formaPagamento(
+	forid int not null auto_increment,
+    fordes varchar(60) not null,
+    primary key(forid)
+);
+
+insert INTO formaPagamento values(4,'PARCELADO');
+SELECT*FROM formaPagamento;
+
+
+
+create table venda(
+	venid int not null,
+    vencliid int not null,
+    venproid int not null,
+    venforid int not null,
+    venpreco decimal(10,2),
+    
+    
+    primary key(venid, vencliid, venproid),
+    foreign key (vencliid) references cliente(cliid),
+    foreign key (venproid) references produto(proid),
+    foreign key (venforid) references formaPagamento(forid)
+     
+);
+insert into venda values(1,1,1,1,100.00);
+
+select max(venid) 'qtde' from venda;
+select *from venda;
+
+
+select proid, procatid, catdes , pronome, propreco from produto
+inner join categoria on catid = procatid;
+show tables;
