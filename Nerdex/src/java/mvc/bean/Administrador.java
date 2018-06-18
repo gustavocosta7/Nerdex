@@ -16,6 +16,10 @@ public class Administrador {
     private String admemail;
     private String admsenha;
 
+    public Administrador() {
+    }
+
+    
     public long getAdmid() {
         return admid;
     }

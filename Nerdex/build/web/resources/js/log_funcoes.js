@@ -27,11 +27,13 @@ function adicionaCarrinho(proid,pronome,propreco){
    
     if(tbProdutos == null)
     	tbProdutos = [];
-
+    
     tbProdutos.push(produto);
     localStorage.setItem("tbProdutos",JSON.stringify(tbProdutos));
     alert("produto adicionado com sucesso");
     
+
+
 //    alert(quantidadeProduto(tbProdutos, proid));
     cont = 0;
     for(i = 0; i < tbProdutos.length; i++){

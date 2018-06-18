@@ -10,19 +10,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import javax.xml.bind.DatatypeConverter;
 import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
-import mvc.bean.ItemProduto;
 import mvc.bean.Mensagem;
 import mvc.bean.ProdutoCategoria;
-import mvc.dao.CarrinhoDao;
 import mvc.dao.CategoriaDAO;
 import mvc.dao.ClienteDAO;
 import mvc.dao.CurriculoDao;
@@ -45,20 +40,17 @@ public class ControllerGeral {
     private final CategoriaDAO catdao;
     private final ProdutoDAO prodao;
     private final CurriculoDao curdao;
-    private final CarrinhoDao carrinhoDao;
-    
-    
     @Autowired
-    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao, CarrinhoDao carrinhoDao){
+    public ControllerGeral(ClienteDAO dao, CategoriaDAO catdao, CurriculoDao curdao,ProdutoDAO prodao){
         this.dao = dao;
         this.catdao = catdao;
         this.curdao = curdao;
         this.prodao = prodao;
-        this.carrinhoDao = carrinhoDao;
     }
     
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model , HttpServletRequest request, HttpSession session){
+      
         List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
 
         try {
@@ -91,7 +83,7 @@ public class ControllerGeral {
     
     @RequestMapping("/index")
     public String retornaIndex(){
-        return "/index";
+       return "/index";
     }
     
     @RequestMapping("/login")
@@ -191,40 +183,7 @@ public class ControllerGeral {
     
     
 //    ///////////////////////////////////////////ADICIONA CARRINHO////////////////////////////////////////////
-    @RequestMapping("/adicionaCarrinho")
-    public String adicionaCarrinho(Integer proid,Integer cliid,Model model){
-        
-         List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
-            
-        try {
-            setImagePath(pc);
-        } catch (IOException ex) {
-            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ItemProduto ip = new ItemProduto();
-        ItemProduto item = carrinhoDao.existeItem(1, 1);
-        if(item.getIteproid() !=null){
-            int quantidade = item.getIteqtde() + 1;
-            item.setIteqtde(quantidade);
-            carrinhoDao.updateItemQtde(item);
-            System.out.println("PASSOU EXISTENTE");
-        }else{
-//            Adiciona no carrinho;
-            ip.setIteproid((long)1);
-            ip.setItecliid((long)1);
-            ip.setIteqtde(1);
-           
-            System.out.println("PASSOU ADICIONADO");
-            carrinhoDao.adicionarItem(item);
-        }
-//        
-        model.addAttribute("produtos",pc);
-        model.addAttribute("listaCategorias",catdao.listarCategorias());
-        System.out.println(carrinhoDao.qtdeItems((long)1)+"---------");
-        model.addAttribute("quantidade", carrinhoDao.qtdeItems((long)1));
-        return "/index";
-        
-    }
+    
     //////////////////////////////////////////////////ALTERA CLIENTE///////////////////////////////
     @RequestMapping("/alteraCliente")
     public String altera(HttpServletRequest request, Model model){
@@ -300,12 +259,10 @@ public class ControllerGeral {
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/trabalhe_conosco";
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping("/carrinho")
     public String carrinho(Model model){
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/carro_compras";
     }
-    
-    
 }

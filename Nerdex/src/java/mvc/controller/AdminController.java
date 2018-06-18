@@ -8,8 +8,6 @@ package mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import mvc.bean.Administrador;
-import mvc.bean.Categoria;
-import mvc.bean.Cliente;
 import mvc.dao.AdminDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

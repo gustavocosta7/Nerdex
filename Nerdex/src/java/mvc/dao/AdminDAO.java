@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import mvc.bean.Administrador;
 import mvc.bean.Categoria;
-import mvc.bean.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +32,7 @@ public class AdminDAO {
             throw new RuntimeException(e);
         }
     }
+
 
     public boolean adicionaAdmin(Administrador admin) {
         String sql = "insert into administrador(admnome,admemail, admsenha) values(?,?,?)";

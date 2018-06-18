@@ -30,7 +30,6 @@
                                 <th>Preco</th>
                             </tr>
                         </thead>
-<<<<<<< HEAD
                             <c:forEach items="${produtos}" var="produtos">
                                 <tr>
                                     <td>${produtos.proid}</td>               
@@ -49,30 +48,12 @@
                         </table>
                         </div>
                         <div class="col-md-2"></div>
-
-=======
-                        <c:forEach items="${produtos}" var="produtos">
-                          <tr>
-                            <td>${produtos.proid}</td>
-                            <td>${produtos.pronome}</td>
-                            <td>${produtos.procatdescricao}</td>
-                            <td>${produtos.propreco}</td>
-                            <td>
-                              <a class="btn btn-danger"href="${pageContext.request.contextPath}/removeProduto?id=${produtos.proid}"
-                                onclick="confirm('Confirma exclus�o desse produto?')">X</a>
-                                <a class="btn btn-outline-secondary"href="${pageContext.request.contextPath}/exibeProduto?id=${produtos.proid}"
-                                  >
-                                  <img alt="Alterar" src="<c:url value='/resources/img/lapis.png'></c:url>"/></a>
-                                </td>
-                              </tr>
-                        </c:forEach>
-                      </table>
+                       
                       <div class="row">
                         <a href="${pageContext.request.contextPath}/produtoPrincipal"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
                       </div>
                 </div>
                 <div class="col-md-2"></div>
->>>>>>> c999e37ea05a8de46cf60ca0217f0bbdac874601
                 </div>
             </div>
 
