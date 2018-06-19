@@ -48,7 +48,7 @@ public class CarrinhoController {
                     cont++;
                 }
             }
-            Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfTotal")));
+            Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfPreco"+i).substring(request.getParameter("tfPreco"+i).indexOf(":")+1)));
             dao.addCarrinho(v);
         }
         return "tarefa/fale_conosco";

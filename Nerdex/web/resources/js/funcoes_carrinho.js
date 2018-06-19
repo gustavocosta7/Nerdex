@@ -21,12 +21,12 @@ $(document).ready(function(){
 
 
       for(i = 0 ; i < tbProdutos.length ; i++){
-          linha = linha+"<tr><td><input type='text' value="+tbProdutos[i]['proid']+" readonly='readonly' name='tfId"+(i)+"' hidden/>"+tbProdutos[i]['proid']+"</td><td>"+tbProdutos[i]['pronome']+"</td><td>"+tbProdutos[i]['propreco']+"</td>";
+          linha = linha+"<tr><td><input type='text' value="+tbProdutos[i]['proid']+" readonly='readonly' name='tfId"+(i)+"' hidden/>"+tbProdutos[i]['proid']+"</td><td>"+tbProdutos[i]['pronome']+"</td><td><input name='tfPreco"+(i)+"' class='form-control' value='R$:"+tbProdutos[i]['propreco']+"' type='text'/ readonly='readonly'></td>";
       	linha = linha+"<td><a href='#' class='btn btn-primary'>Detalhe</a></td><td><a href='#'id="+(i)+" class='btn btn-danger'  onClick='excluir(this)'>X</a></td></tr>";
       	ptotal = ptotal + tbProdutos[i]['propreco'];
       }
       linha = linha + "<tr><td>Quantidade</td><td><input name='tfQtde' class='form-control' type='text' value="+tbProdutos.length+" readonly='readonly'/></td>";
-      linha = linha + "<td>P.Total</td><td><input type='text' name='tfTotal' value="+ptotal+" readonly='readonly'/></td></tr>";
+      linha = linha + "<td>P.Total</td><td><input type='text' class='form-control' name='tfTotal' value='R$:"+ptotal+"' readonly='readonly'/></td></tr>";
       $("#produtos").html(linha);
   }
  function excluir(atributo){
