@@ -14,15 +14,26 @@ public class Venda {
     private long cliid;
     private long venproid;
     private long venforid;
+    private int venqtde;
     private double venpreco;
 
-    public Venda(long cliid, long venproid, long venforid, double venpreco) {
+    public Venda(long venid, long cliid, long venproid, long venforid, int venqtde, double venpreco) {
+        this.venid = venid;
         this.cliid = cliid;
         this.venproid = venproid;
         this.venforid = venforid;
+        this.venqtde = venqtde;
         this.venpreco = venpreco;
     }
 
+    public int getVenqtde() {
+        return venqtde;
+    }
+
+    public void setVenqtde(int venqtde) {
+        this.venqtde = venqtde;
+    }
+    
     public Venda(long venid, long cliid, long venproid, long venforid, double venpreco) {
         this.venid = venid;
         this.cliid = cliid;

@@ -7,6 +7,7 @@ package mvc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import mvc.bean.Venda;
 import mvc.dao.CarrinhoDAO;
@@ -33,11 +34,21 @@ public class CarrinhoController {
   
         int quantidade = Integer.parseInt(request.getParameter("tfQtde"));
         int idVenda = dao.sizeVendas();
+        idVenda++;
         int idCliente = Integer.parseInt(request.getParameter("tfCliid"));
         
        for(int i = 0 ; i < quantidade ; i++){
             proid.add(Integer.parseInt(request.getParameter("tfId"+i)));
-            Venda v = new Venda(idVenda,idCliente,Integer.parseInt(request.getParameter("tfId"+i)),1,Double.parseDouble(request.getParameter("tfTotal")));
+        }
+
+        for(int i = 0; i < proid.size(); i++){
+            int cont = 0;
+            for(int j = 0; j < proid.size(); j++){
+                if(Objects.equals(proid.get(i), proid.get(j))){
+                    cont++;
+                }
+            }
+            Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfTotal")));
             dao.addCarrinho(v);
         }
         return "tarefa/fale_conosco";

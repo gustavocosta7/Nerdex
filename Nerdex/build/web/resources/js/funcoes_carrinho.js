@@ -7,6 +7,9 @@
 
 $(document).ready(function(){
     carrega();
+    $("#btnEnviar").click(function(){
+      localStorage.clear();
+    });
   });
   
   function carrega(){
@@ -40,3 +43,5 @@ $(document).ready(function(){
          
          carrega();
  }
+
+

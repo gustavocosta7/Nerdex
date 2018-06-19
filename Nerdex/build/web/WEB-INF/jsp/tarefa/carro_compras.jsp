@@ -93,7 +93,7 @@
                             
                         </table>
                         <c:if test="${cliente.cliid != null}">
-                             <input type="submit" class="btn btn-primary btn-block" value="FINALIZAR COMPRA"/>
+                             <input type="submit" id="btnEnviar" class="btn btn-primary btn-block" value="FINALIZAR COMPRA"/>
                         </c:if>                        
                         <c:if test="${cliente.cliid == null}">
                              <button type="button" class="btn btn-primary btn-block" data-toggle="modal"

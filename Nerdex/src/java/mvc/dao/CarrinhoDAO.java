@@ -34,7 +34,7 @@ public class CarrinhoDAO {
 //    INSERT
     
   public void addCarrinho(Venda v){
-      String sql = "insert into venda (venid, vencliid, venproid,venforid,venpreco)  values (?,?,?,?,?)";
+      String sql = "insert into venda (venid, vencliid, venproid,venforid,venqtde,venpreco)  values (?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -42,7 +42,8 @@ public class CarrinhoDAO {
             ps.setLong(2, v.getCliid());
             ps.setLong(3, v.getVenproid());
             ps.setLong(4, v.getVenforid());
-            ps.setDouble(5, v.getVenpreco());
+            ps.setInt(5, v.getVenqtde());
+            ps.setDouble(6, v.getVenpreco());
             ps.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
