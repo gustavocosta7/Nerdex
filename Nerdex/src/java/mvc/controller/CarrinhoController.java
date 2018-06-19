@@ -5,14 +5,24 @@
  */
 package mvc.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
+import mvc.bean.ProdutoCategoria;
 import mvc.bean.Venda;
 import mvc.dao.CarrinhoDAO;
+import mvc.dao.CategoriaDAO;
+import mvc.dao.ProdutoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,14 +32,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CarrinhoController {
     private final CarrinhoDAO dao;
-    
+    private final CategoriaDAO catdao;
+    private final ProdutoDAO prodao;
     @Autowired
-    public CarrinhoController(CarrinhoDAO dao) {
+    public CarrinhoController(CarrinhoDAO dao,ProdutoDAO prodao,CategoriaDAO catdao) {
         this.dao = dao;
+        this.catdao = catdao;
+        this.prodao  = prodao;
     }
     
     @RequestMapping("/finalizaCompra")
-    public String compra(HttpServletRequest request){
+    public String compra(HttpServletRequest request, Model model){
         List<Integer> proid = new ArrayList<>();
   
         int quantidade = Integer.parseInt(request.getParameter("tfQtde"));
@@ -51,8 +64,40 @@ public class CarrinhoController {
             Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfPreco"+i).substring(request.getParameter("tfPreco"+i).indexOf(":")+1)));
             dao.addCarrinho(v);
         }
-        return "tarefa/fale_conosco";
+                List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
+
+        try {
+            setImagePath(pc);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        model.addAttribute("produtos",pc);
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
+        return "index";
     }
     
+    
+    //////////////////////////////////////////////////////////////////////
+     private void setImagePath(List<ProdutoCategoria> listaProdutos) throws IOException{
+        
+        for (ProdutoCategoria pc : listaProdutos) {
+            
+            BufferedImage bImage = ImageIO.read(new File(pc.getProcam()));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( bImage, "png", baos );
+            baos.flush();
+            byte[] imageInByteArray = baos.toByteArray();
+            baos.close();                                   
+            String b64 = DatatypeConverter.printBase64Binary(imageInByteArray);
+            pc.setProcam(b64);
+        }
+    }
+     
+   ///////////////////////////////////////////////////////////////////////////////////////////
+     @RequestMapping("/compras")
+     private String compras(){
+         return "tarefa/compra";
+     }
     
 }

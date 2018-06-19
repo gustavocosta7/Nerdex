@@ -7,9 +7,10 @@
 
 $(document).ready(function(){
     carrega();
-    $("#btnEnviar").click(function(){
-      localStorage.clear();
-    });
+    $("#btnEnviar").click(function(){   
+       
+            localStorage.clear();
+        }
   });
   
   function carrega(){

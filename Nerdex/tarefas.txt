@@ -1,0 +1,15 @@
+=========HENRIQUE===========
+
+curriculo
+detalhe do produto
+categoria generico
+
+
+==========GUSTAVO===================
+
+ADM verificar status da compra
+cliente verificar suas compras
+
+
+===============total===============
+VERIFICAR FALHAS
