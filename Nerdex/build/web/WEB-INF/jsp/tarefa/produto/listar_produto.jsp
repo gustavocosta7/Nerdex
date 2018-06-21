@@ -46,12 +46,11 @@
                                 </tr>
                             </c:forEach>
                         </table>
+                        <div class="row">
+                            <a href="${pageContext.request.contextPath}/produtoPrincipal"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
+                        </div>
                         </div>
                         <div class="col-md-2"></div>
-                       
-                      <div class="row">
-                        <a href="${pageContext.request.contextPath}/produtoPrincipal"> <button type="button" class="btn btn-outline-info">Voltar</button></a>
-                      </div>
                 </div>
                 <div class="col-md-2"></div>
                 </div>

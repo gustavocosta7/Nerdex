@@ -233,7 +233,7 @@ public class ControllerGeral {
    @RequestMapping(value="/adicionaCurriculo")
     public String adiciona(HttpServletRequest request, Model model){
         try {
-             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("tfCur");
             
             

@@ -23,7 +23,8 @@
                     <h3>Admin Principal</h3>
                     <a href="${pageContext.request.contextPath}/crudCategoria"><button type="button" class="btn btn-primary btn-lg btn-block">Categorias</button></a><br>
                     <a href="${pageContext.request.contextPath}/crudProduto"><button type="button" class="btn btn-primary btn-lg btn-block"> Produtos </button></a><br>
-                    <a href="${pageContext.request.contextPath}/crudMensagem"><button type="button" class="btn btn-primary btn-lg btn-block"> Mensagens </button></a>
+                    <a href="${pageContext.request.contextPath}/crudMensagem"><button type="button" class="btn btn-primary btn-lg btn-block"> Mensagens </button></a><br>
+                    <a href="${pageContext.request.contextPath}/crudCurriculo"><button type="button" class="btn btn-primary btn-lg btn-block"> Curriculos </button></a>
                 </div>
                 <div class="col-md-4"></div>
             </div>

@@ -6,9 +6,13 @@
 package mvc.controller;
 
 
+import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import mvc.bean.Administrador;
+import mvc.bean.Curriculo;
 import mvc.dao.AdminDAO;
+import mvc.dao.CurriculoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

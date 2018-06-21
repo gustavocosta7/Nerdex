@@ -68,7 +68,7 @@ public class MensagemDAO {
         return true;
     }
     
-   public Mensagem retornaMensagem(Long id){
+    public Mensagem retornaMensagem(Long id){
         String sql = "select * from mensagem where menid = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class MensagemDAO {
                 
             }
             return men;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw  new RuntimeException(e);
         } 
     }

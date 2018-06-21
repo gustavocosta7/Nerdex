@@ -20,6 +20,7 @@ public class Curriculo {
         this.curemail = curemail;
         this.curcaminho = curcaminho;
     }
+    public Curriculo(){};
 
     public String getCurnome() {
         return curnome;

@@ -7,9 +7,13 @@ package mvc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import mvc.bean.Curriculo;
+import mvc.bean.Mensagem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -55,7 +59,38 @@ public class CurriculoDao {
 //    -----------------------UPDATE
 //    -----------------------DELETE
 //    -----------------------SELECT
+    public List<Curriculo> listarCurriculos(){
+        List<Curriculo> listaCurriculos = new ArrayList<>();
+        String sql = "select * from curriculo";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Curriculo curriculo = new Curriculo();
+                curriculo.setCurid(rs.getLong("curid"));
+                curriculo.setCurnome(rs.getString("curnome"));
+                curriculo.setCuremail(rs.getString("curemail"));
+                listaCurriculos.add(curriculo);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return listaCurriculos;
+        
+    }
     
+    public boolean removerCurriculo(long id) {
+        String sql = "delete from curriculo where curid = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, id);
+            ps.execute();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return true;
+        
+    }
     
     
     
