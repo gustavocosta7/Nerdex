@@ -97,7 +97,7 @@ public class CarrinhoController {
    ///////////////////////////////////////////////////////////////////////////////////////////
      @RequestMapping("/compras")
      private String compras(){
-         return "tarefa/compra";
+         return "tarefa/minhas_compras";
      }
     
 }
