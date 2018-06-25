@@ -120,10 +120,32 @@ public class ControllerGeral {
     //em construção
     @RequestMapping("/detalheProduto")
     public String detalheProduto(int id,Model model){
-        model.addAttribute("prodDetalhe",prodao.getProduto(Long.valueOf(id)));
+        ProdutoCategoria pc = prodao.getProduto((long)id);
+
+        try {
+            setImagePath1(pc);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println(pc.getProcam());
+        model.addAttribute("produto", pc);
+        model.addAttribute("listaCategorias", catdao.listarCategorias());
         return "tarefa/detalhe_produto";
     }
     
+        private void setImagePath1(ProdutoCategoria pc) throws IOException {
+
+        BufferedImage bImage = ImageIO.read(new File(pc.getProcam()));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bImage, "png", baos);
+        baos.flush();
+        byte[] imageInByteArray = baos.toByteArray();
+        baos.close();
+        String b64 = DatatypeConverter.printBase64Binary(imageInByteArray);
+        pc.setProcam(b64);
+
+    }
     
     @RequestMapping("/cadastro-cliente")
     public String cadastroCliente(Cliente cliente, HttpServletRequest request, Model model){

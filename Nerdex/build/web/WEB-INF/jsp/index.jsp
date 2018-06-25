@@ -102,7 +102,8 @@
                                   <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                         data-target="#modalLogin">Adicionar Carrinho</button>    
                                 </c:if>
-                                <a href="detalheProduto?id=${produto.proid}" class="btn btn-outline-success  btn-block">Detalhes</a>
+                                
+                                <a href="${pageContext.request.contextPath}/detalheProduto?id=${produto.proid}" class="btn btn-outline-success  btn-block">Detalhes</a>
                             
                             </div>
                         </div>

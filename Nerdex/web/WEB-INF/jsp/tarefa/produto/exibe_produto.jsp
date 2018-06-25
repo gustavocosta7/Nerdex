@@ -26,9 +26,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4 ">
                     <form action="<c:url value='/alterarProduto'/>" method="post" enctype="multipart/form-data">
-
-
-                        <div class="form-group">
+                    <div class="form-group">
                             <label>ID</label>
                             <input name="tfId" class="form-control" type="number" value="${produto.proid}" readonly="readonly">
                         </div>                        
@@ -48,8 +46,6 @@
                                     
                                     </c:forEach> 
                           </select>
-
-                        
                        
                         <div class="form-group">
                             <label>Preço</label>
