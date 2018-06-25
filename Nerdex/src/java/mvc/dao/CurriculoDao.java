@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import mvc.bean.Cliente;
 import mvc.bean.Curriculo;
 import mvc.bean.Mensagem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,24 @@ public class CurriculoDao {
         
     }
     
+    public Curriculo getCurriculo(long id){
+        String sql = "select * from curriculo where curid = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1,id);
+            ResultSet rs = ps.executeQuery();
+            Curriculo curriculo = new Curriculo();
+            while(rs.next()){
+                curriculo.setCurid(rs.getLong("curid"));
+                curriculo.setCurnome(rs.getString("curnome"));
+                curriculo.setCuremail(rs.getString("curemail"));
+                curriculo.setCurcaminho(rs.getString("curcaminho"));
+            }
+            return curriculo;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     
 }

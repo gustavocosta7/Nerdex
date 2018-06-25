@@ -79,8 +79,6 @@ public class ControllerGeral {
         }
     }
     
-
-    
     @RequestMapping("/index")
     public String retornaIndex(){
        return "/index";
@@ -117,6 +115,13 @@ public class ControllerGeral {
     public String faleConosco(Model model){
         model.addAttribute("listaCategorias",catdao.listarCategorias());
         return "tarefa/fale_conosco";
+    }
+    
+    //em construção
+    @RequestMapping("/detalheProduto")
+    public String detalheProduto(int id,Model model){
+        model.addAttribute("prodDetalhe",prodao.getProduto(Long.valueOf(id)));
+        return "tarefa/detalhe_produto";
     }
     
     

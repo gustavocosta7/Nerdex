@@ -102,7 +102,7 @@
                                   <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                         data-target="#modalLogin">Adicionar Carrinho</button>    
                                 </c:if>
-                                <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
+                                <a href="detalheProduto?id=${produto.proid}" class="btn btn-outline-success  btn-block">Detalhes</a>
                             
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                                   <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                         data-target="#modalLogin">Adicionar Carrinho</button>    
                                 </c:if>
-                                    <a href="#" class="btn btn-outline-success  btn-block">Detalhes</a>
+                                    <a href="detalheProduto?id=${produto.proid}" class="btn btn-outline-success  btn-block">Detalhes</a>
                                 </form>
 
                             </div>

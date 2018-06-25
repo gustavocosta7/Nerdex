@@ -36,7 +36,7 @@
                                     <td>${curriculo.curnome}</td>
                                     <td>${curriculo.curemail}</td>
                                     <td>
-                                      <a class="btn btn-outline-info" href="visualizarCurriculo?id=${curriculo.curid}" target="_blank"> Visualizar</a>
+                                      <a class="btn btn-outline-info" href="visualizarCurriculo?id=${curriculo.curid}"> Visualizar</a>
                                       <a class="btn btn-outline-danger" href="excluirCurriculo?id=${curriculo.curid}">Excluir</a>
                                     </td>
                                 </tr>
