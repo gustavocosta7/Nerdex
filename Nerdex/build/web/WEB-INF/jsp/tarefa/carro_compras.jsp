@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <br>
-                    <button type="button" class="btn btn-outline-warning">Minhas Compras</button>
+                    <a href="${pageContext.request.contextPath}/compras" class="btn btn-outline-warning">Minhas Compras</a>
                     
                     
                 </div>

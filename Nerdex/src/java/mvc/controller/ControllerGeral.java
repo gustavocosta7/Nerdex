@@ -150,17 +150,8 @@ public class ControllerGeral {
             
             model.addAttribute("produtos",pc);
             model.addAttribute("listaCategorias",catdao.listarCategorias());
-            switch(id){
-                case 1:
-                    return  "tarefa/pages/cat_livro";
-                case 2:
-                    return "tarefa/pages/cat_camisa";
-                case 3:
-                    return "tarefa/pages/cat_caneca";
-                case 4:
-                    return "tarefa/pages/cat_pelucia";
-            }
-        return "/";            
+    
+            return "/index";     
     }
     
     @RequestMapping("/valida-login") 
