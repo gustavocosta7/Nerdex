@@ -17,6 +17,9 @@
     <body>
         <a href="index.jsp"></a>
           <!-- NAVBAR -->
+                  <div class="container">
+            <div class="row"></div>
+        </div>
         <div class="container">
             <div class="row">
 
@@ -77,11 +80,14 @@
                 </div>
             </div>
                                         <!--CORPO -->
+                                        
         <div class="container">
             <div class="row">
+                
                 <div class="col-md-12"></div>
                 <div class="col-md-12">
                     <div class="jumbotron">
+                        <br>
                       <h1 class="display-4">Oh não, você está de saída</h1>
                       <p class="lead">Agradecemos sua visita na NERDEX!</p>
                       <hr class="my-4">Aproveite para voltar sempre que achar necessário</p>

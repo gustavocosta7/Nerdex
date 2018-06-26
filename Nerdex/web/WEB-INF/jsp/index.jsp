@@ -17,9 +17,6 @@
     <body>
         <a href="index.jsp"></a>
         <!-- NAVBAR -->
-        <div class="container">
-            <div class="row">
-
                 <div class="col-md-12">
                     <div class="container">
                         <div class="row">
@@ -78,6 +75,13 @@
             </div>
             <!-- CORPO -->
             <div class="container">
+                
+            <c:if test="${alerta != null}">
+                
+                <div class="alert alert-danger" role="alert">
+                    ${alerta}
+                </div>
+            </c:if>
                 <div class="row">
                     <div class="col-sm-12"><br></div>
                 </div>

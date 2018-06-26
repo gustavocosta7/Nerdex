@@ -8,8 +8,10 @@ package mvc.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
-import mvc.bean.ProdutoCategoria;
+import mvc.bean.Carrinho;
 import mvc.bean.Venda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -69,5 +71,27 @@ public class CarrinhoDAO {
         return quantidade;
     
    }
-    
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public List<Carrinho> listVendas(Long cliid){
+        List<Carrinho> vendas = new ArrayList<>();
+        String sql = "select venid,venproid, pronome, count(venqtde) 'qtde' " + "from venda "+
+                "inner join produto on venproid = proid "+"group by vencliid ,venproid" + " having vencliid = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, cliid);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Carrinho c = new Carrinho(rs.getLong("venid"),rs.getLong("venproid"),rs.getString("pronome"),
+                        rs.getInt("qtde"));
+                vendas.add(c);
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return vendas;
+   }
 }

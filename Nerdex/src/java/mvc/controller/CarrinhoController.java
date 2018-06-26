@@ -61,7 +61,7 @@ public class CarrinhoController {
                     cont++;
                 }
             }
-            Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfPreco"+i).substring(request.getParameter("tfPreco"+i).indexOf(":")+1)));
+            Venda v = new Venda(idVenda,idCliente,proid.get(i),1,cont,Double.parseDouble(request.getParameter("tfPreco"+i).substring(request.getParameter("tfPreco"+i).indexOf("$")+1)));
             dao.addCarrinho(v);
         }
                 List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
@@ -96,7 +96,9 @@ public class CarrinhoController {
      
    ///////////////////////////////////////////////////////////////////////////////////////////
      @RequestMapping("/compras")
-     private String compras(){
+     private String compras(int id, HttpServletRequest request, Model model){
+          
+         model.addAttribute("venda",dao.listVendas((long)id));
          return "tarefa/minhas_compras";
      }
     

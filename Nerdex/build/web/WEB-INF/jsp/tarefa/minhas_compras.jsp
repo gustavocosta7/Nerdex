@@ -17,6 +17,9 @@
     </head>
     <body>
           <!-- NAVBAR -->
+                  <div class="container">
+            <div class="row"></div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -79,7 +82,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                   <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id da venda</th>
+                        <th scope="col">Nome Produto</th>
+                        <th scope="col">Qtde</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach  items="${venda}" var="venda">
+                       <tr>
+                        <td>${venda.venid}</td>
+                        <td>${venda.venpronome}</td>
+                        <td>${venda.venqtde}</td>
+                      </tr>
+
+                    </c:forEach>
+
+                    </tbody>
+                  </table> 
+                </div>
                 <div class="col-md-4"></div>
             </div>
         </div>

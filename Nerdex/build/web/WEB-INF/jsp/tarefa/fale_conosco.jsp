@@ -16,6 +16,7 @@
     </head>
     <body>
             <!-- NAVBAR -->
+
         <div class="container">
             <div class="row">
 
@@ -77,9 +78,11 @@
             </div>
             <!-- CORPO -->
 
+        </div>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
+                        <br>
                         <h2  class="text-center">Mande sua mensagem</h2>
                     </div>
                 </div>

@@ -182,7 +182,19 @@ public class ControllerGeral {
        Cliente cliente = new Cliente();
        cliente.setCliemail(request.getParameter("tfEmail")); 
        cliente.setClisenha(request.getParameter("tfSenha")); 
-       
+       List<ProdutoCategoria> pc = prodao.listarProdutosComFoto();
+
+        try {
+            setImagePath(pc);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        model.addAttribute("produtos",pc);
+        model.addAttribute("listaCategorias",catdao.listarCategorias());
+        
+        
        if( dao.validaCliente(cliente)){
             Cliente c1 =  dao.getCliente(cliente);
             try{
@@ -193,6 +205,8 @@ public class ControllerGeral {
             }
             return "tarefa/usuario_perfil";
        }else{
+           String alerta = "Usuário ou senha incorretos";
+           model.addAttribute("alerta",alerta);
             return "/index"; 
        }
             

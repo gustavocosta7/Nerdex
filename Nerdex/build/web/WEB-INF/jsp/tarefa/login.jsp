@@ -16,9 +16,7 @@
     </head>
     <body>
           <!-- NAVBAR -->
-        <div class="container">
-            <div class="row">
-
+        </div>
                 <div class="col-md-12">
                     <div class="container">
                         <div class="row">
@@ -80,6 +78,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
+                    <br>
                     <h3>Entrar no Nerdex</h3>
                     <form method="post"  action="${pageContext.request.contextPath}/valida-login">
                         <div class="form-group">

@@ -23,9 +23,9 @@
     <body>
         <a href="index.jsp"></a>
            <!-- NAVBAR -->
-        <div class="container">
-            <div class="row">
-
+                   <div class="container">
+            <div class="row"></div>
+        </div>
                 <div class="col-md-12">
                     <div class="container">
                         <div class="row">
@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <br>
-                    <a href="${pageContext.request.contextPath}/compras" class="btn btn-outline-warning">Minhas Compras</a>
+                    <a href="${pageContext.request.contextPath}/compras?id=${cliente.cliid}" class="btn btn-outline-warning">Minhas Compras</a>
                     
                     
                 </div>
@@ -113,7 +113,7 @@
                              
                     </form>
                  </div>
-                <div class="col-md-2"></div>
+                             <div class="col-md-2"><input type="number" name="tfCliid" hidden value="${cliente.cliid}"></div>
             </div>
         </div>   
   <!-- Modal -->

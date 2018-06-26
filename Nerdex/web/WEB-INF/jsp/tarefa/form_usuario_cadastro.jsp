@@ -17,6 +17,8 @@
     </head>
     <body>
         <!-- NAVBAR -->
+
+        </div>
         <div class="container">
             <div class="row">
 
@@ -57,16 +59,8 @@
                                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><img src="<c:url value='/resources/img/magnifier.png'></c:url>"/></button>
                                                 </form>
                                             </ul>
-
-                                        <c:if test="${cliente.clinome == null}">
                                             <a  class=" btn btn-primary" style="margin-right: 2%" href="${pageContext.request.contextPath}/login">Login</a>
-                                        </c:if>
-                                        <c:if test="${cliente.clinome != null}">
-                                            <a  class=" btn badge badge-success" style="margin-right: 2%" href="${pageContext.request.contextPath}/exibe-usuario">Bem vindo!, ${cliente.clinome}</a>
-                                            <a  class=" btn btn-secondary" style="margin-right: 2%" href="${pageContext.request.contextPath}/logout">Logout</a>
-                                        </c:if>
-
-                                        <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
+                                            <a class="btn btn-sm btn-info" href="${pageContext.request.contextPath}/carrinho" >
                                             <img src="<c:url value='/resources/img/cart.png'></c:url>" style="max-width: 60%"/><span id="qtde" class="badge badge-light"></span>
                                         </a>
                                         </div>
@@ -80,6 +74,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" style="margin-left: 25%">
+                        <br>
                          <h1 class="h1">Cadastro de Cliente</h1>
                     </div>
                    
@@ -113,7 +108,7 @@
                                     <button type="submit" class="btn btn-outline-success centered">Cadastrar</button>
                                 </div>
                                <c:if test="${adicionado == true}">
-                                                    <div class="alert alert-success" role="alert">
+                                                    <div class="alert btn-block text-center alert-success" role="alert">
                                                         Usuario adicionado com sucesso!
                                                     </div>
                                </c:if>

@@ -17,6 +17,9 @@
     </head>
     <body>  
             <!-- NAVBAR -->
+                    <div class="container">
+            <div class="row"></div>
+        </div>
         <div class="container">
             <div class="row">
 
@@ -81,6 +84,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    <br>
                     <h2  class="text-center">Trabalhe Conosco</h2>
                 </div>
             </div>
